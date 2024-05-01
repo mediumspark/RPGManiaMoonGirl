@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseValue: 20
   lunarCost: 2
-  SpecialEffectParticles: {fileID: 0}
-  Description: Hit ALl
+  SpecialEffectParticles: {fileID: 2708598583397607911, guid: 6398d43fe79ea0140913dc5530c646af, type: 3}
+  Description: Costs 2 Lunar, Hits all Enemies

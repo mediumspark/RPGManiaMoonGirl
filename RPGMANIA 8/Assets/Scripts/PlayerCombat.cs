@@ -22,9 +22,11 @@ namespace Playable.Entities.Battle
             AttackButton.onClick.AddListener(() => PlayerRef.instance.IncreaseLunarCharge());
 
             DefendButton.onClick.AddListener(() => PlayerRef.instance.Defending = true);
+            DefendButton.onClick.AddListener(() => BattleManager.instance.EndTurn()); 
         }
 
-        public void Attack(EntityBase target) => PlayerRef.instance.BasicAttack(target, PlayerStats.Attack); 
+        public void Attack(EntityBase target) => PlayerRef.instance.PerformBasicAttack(target); 
+
 
     }
 }

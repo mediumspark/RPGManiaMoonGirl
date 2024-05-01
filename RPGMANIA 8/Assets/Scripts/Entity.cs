@@ -26,17 +26,33 @@ namespace Playable.Entities
     }
 
 
+
     public class  EntityBase : MonoBehaviour, Entity
     {
         [HideInInspector]
-        public StatsRef stats { get; set; } 
+        public StatsRef stats { get; set; }
+
+        [Serializable]
+        public struct Attack
+        {
+            public int Damage;
+            public GameObject Effect;
+
+            public void DoDamage(EntityBase Target)
+            {
+                Target.OnDamageTaken(Damage);
+                Instantiate(Effect, Target.transform); 
+            }
+        }
+
+        public Attack BasicAttack;
 
         public virtual int CurrentHealth { get; set; }
         public virtual int MaxHealth { get; set; }
 
-        public virtual void BasicAttack(EntityBase Target, int damage)
+        public virtual void PerformBasicAttack(EntityBase Target)
         {
-            Target.OnDamageTaken(damage);
+            BasicAttack.DoDamage(Target); 
         }
 
         public virtual void OnDamageTaken(int amount)

@@ -236,6 +236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4698c6fb30e75da4bb96ed4637c68a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BasicAttack:
+    Damage: 5
+    Effect: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
   Loot:
     EXP: 0
   Stats: {fileID: 11400000, guid: 4b56ee5fd92af5046a8bc874b30369be, type: 2}

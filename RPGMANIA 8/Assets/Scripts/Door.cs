@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Playable.Entities
 {
+
     public class Door : MonoBehaviour, IOnTriggerInteract, IInteractable
     {
         public bool Exit;

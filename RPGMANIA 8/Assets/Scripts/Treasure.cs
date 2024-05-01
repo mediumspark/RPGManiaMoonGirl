@@ -12,18 +12,4 @@ namespace Playable.Entities
             gameObject.SetActive(false);
         }
     }
-
-
-    public class Page : Treasure
-    {
-        [SerializeField]
-        int PageNumber;
-
-        public override void OnInteract()
-        {
-            //Add Page to PagesUnlocked
-
-            base.OnInteract();
-        }
-    }
 }

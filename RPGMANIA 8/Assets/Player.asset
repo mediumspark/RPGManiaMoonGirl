@@ -18,9 +18,9 @@ MonoBehaviour:
   Attack: 25
   Defense: 8
   Special: 20
-  CurrentHealth: 100
+  CurrentHealth: 20
   CurrentLunarPercent: 0
-  CurrentLunarPhase: 0
+  CurrentLunarPhase: 1
   TeamMateOne: {fileID: 0}
   TeamMateTwo: {fileID: 0}
   Allies: []

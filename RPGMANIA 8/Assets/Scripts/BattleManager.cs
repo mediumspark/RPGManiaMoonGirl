@@ -63,14 +63,13 @@ namespace Playable.Entities.Battle
             LootText.text = $"EXP : {TotalExp}";
             WinCanvas.SetActive(true);
             WinCanvas.GetComponent<Animator>().Play("Win");
-
+            TurnOrder.Clear(); 
         }
 
 
         private void Awake()
         {
             instance = this;
-            zone = FindObjectOfType<BattleZone>();
             input = new PlayerInput();
             input.Misc.Select.performed += OnClick;
         }
@@ -122,9 +121,14 @@ namespace Playable.Entities.Battle
                 Currentindex++;
             }
             else
-                Currentindex = 0; 
-
-            CurrentActor = TurnOrder[Currentindex];
+                Currentindex = 0;
+            try
+            {
+                CurrentActor = TurnOrder[Currentindex];
+                if (CurrentActor.tag == "Player")
+                    PlayerRef.instance.Defending = false;
+            }
+            catch { }
         }
 
         private void Update()
@@ -136,7 +140,7 @@ namespace Playable.Entities.Battle
 
             if(CurrentActor.tag == "Enemy")
             {
-                CurrentActor.BasicAttack(PlayerRef.instance, CurrentActor.stats.Attack); 
+                CurrentActor.PerformBasicAttack(PlayerRef.instance); 
             }
 
         }

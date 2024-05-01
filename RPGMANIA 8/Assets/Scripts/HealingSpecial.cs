@@ -13,9 +13,14 @@ namespace Playable.Entities.Battle
             onCast.AddListener(() => Heal(PlayerRef.instance)); 
         }
 
+        public override void ParticleEffect(EntityBase target)
+        {
+            Instantiate(SpecialEffectParticles, PlayerRef.instance.PlayerPos, Quaternion.identity);
+        }
+
         public void Heal(EntityBase entity)
         {
-            entity.OnHeal(BaseValue); 
+            entity.OnHeal(BaseValue);
         }
     }
 }

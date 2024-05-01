@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8764502b-fd51-41c9-90ea-40de489ca93b}">
+		<property name="assetPath">
+			<value>Three_Goddess_-_Overworld_Exploration.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>68.016000000000005</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{7da05bbf-0cf9-4001-b419-ffdb1fcf9ede}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -8,6 +8,7 @@ namespace UI
     using UnityEngine.UI;
     using Playable.Entities.Battle;
     using TMPro;
+    using Stats; 
 
 #if UNITY_EDITOR
     using UnityEditor;

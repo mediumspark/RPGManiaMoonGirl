@@ -7,7 +7,8 @@ namespace UI
 {
     using UnityEngine.UI;
     using Stats;
-    using TMPro; 
+    using TMPro;
+    using Playable;
 
     public class PlayerUI : MonoBehaviour
     {
@@ -16,7 +17,8 @@ namespace UI
         public Image Player;
         public Slider HealthSlider, LunerSlider;
         public TextMeshProUGUI LunarLevel;
-       
+
+
         private void Update()
         {
             if (PlayerStats != null)

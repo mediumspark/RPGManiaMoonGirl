@@ -27,9 +27,9 @@ namespace Playable.Entities.Battle
             stats = Stats; 
 
             CurrentHealth = MaxHealth = Stats.MaxHealth;
-            var player = FindObjectOfType<PlayerMovement>().transform.position;
+            
 
-            transform.LookAt(new Vector3(player.x, FindObjectOfType<PlayerMovement>().GetComponent<Collider>().bounds.min.y, player.z)); 
+            transform.LookAt(PlayerRef.instance.PlayerPos); 
         }
 
         public override void OnDamageTaken(int amount)
@@ -39,10 +39,11 @@ namespace Playable.Entities.Battle
             HealthSprite.size = new Vector2(x, 1);
         }
 
-        public override void BasicAttack(EntityBase Target, int damage)
+
+        public override void PerformBasicAttack(EntityBase Target)
         {
-            base.BasicAttack(Target, damage);
-            BattleManager.instance.EndTurn(); 
+            base.PerformBasicAttack(Target);
+            BattleManager.instance.EndTurn();
         }
 
         public override void OnDeath()

@@ -1,4 +1,6 @@
+using Playable;
 using Playable.Entities;
+using Playable.Entities.Player;
 using Stats;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,16 +18,26 @@ namespace Stats
         [SerializeField]
         PlayerBag Bag;
         public bool Defending;
-        [SerializeField]
-        GameObject DefeatCanvas; 
+        [HideInInspector]
+        public PlayerMovement Playerlocation; 
         public override int CurrentHealth { get => PlayerStats.CurrentHealth; set => PlayerStats.CurrentHealth = value; }
         public override int MaxHealth { get => PlayerStats.MaxHealth; set => PlayerStats.MaxHealth = value; }
         public PlayerStatsRef Stats => PlayerStats;
+
+        public Vector3 PlayerPos
+        {
+            get
+            {
+                var player = FindObjectOfType<PlayerMovement>().transform.position;
+                return new Vector3(player.x, FindObjectOfType<PlayerMovement>().GetComponent<Collider>().bounds.min.y, player.z);
+            }
+        }
 
         private void Awake()
         {
             instance = this;
             stats = PlayerStats;
+            BasicAttack.Damage += PlayerStats.Attack;
         }
 
         public override void OnDamageTaken(int amount)
@@ -38,6 +50,15 @@ namespace Stats
 
             base.OnDamageTaken(amount);
 
+        }
+
+        private void Update()
+        {
+            try
+            {
+                transform.position = Playerlocation.transform.position;
+            }
+            catch { }
         }
 
         public void IncreaseLunarCharge()
@@ -92,7 +113,7 @@ namespace Stats
 
         public override void OnDeath()
         {
-            DefeatCanvas.SetActive(true); 
+            GameState.instance.DefeatCanvas.SetActive(true); 
         }
     }
 

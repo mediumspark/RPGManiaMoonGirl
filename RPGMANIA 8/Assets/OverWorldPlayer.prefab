@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5566055163516480856}
   - component: {fileID: 3295273585606033467}
   - component: {fileID: 5371813608664885792}
+  - component: {fileID: 4851030752057732519}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -110,6 +111,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4851030752057732519
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148422645427863390}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0a8e80c2cd97b9c45a0ce92976c5be3c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1583138156550118172
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,6 +719,7 @@ GameObject:
   - component: {fileID: 3674840291759253086}
   - component: {fileID: 6612134719796995847}
   - component: {fileID: 8289058484918912623}
+  - component: {fileID: 6312555631671566322}
   m_Layer: 0
   m_Name: OverWorldPlayer
   m_TagString: Player
@@ -741,6 +764,7 @@ MonoBehaviour:
   JumpForce: 1.5
   JumpTime: 0.5
   Speed: 5
+  Right: 0
 --- !u!143 &3674840291759253086
 CharacterController:
   m_ObjectHideFlags: 0
@@ -784,6 +808,7 @@ MonoBehaviour:
     m_Bits: 8
   InteractionRange: 1.5
   Indicator: {fileID: 4259455368568296203}
+  PickUpObjectText: {fileID: 0}
 --- !u!114 &8289058484918912623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,6 +824,22 @@ MonoBehaviour:
   OWCam: {fileID: 0}
   BattleCam: {fileID: 0}
   BattleTargetGroup: {fileID: 0}
+--- !u!114 &6312555631671566322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6208872221645803416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9b1278aeb62b174ab0c72316fd3a5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ani: {fileID: 4851030752057732519}
+  Movement: {fileID: 8478971501229906762}
+  Sprite: {fileID: 5371813608664885792}
+  State: 0
 --- !u!1 &6516837923273274495
 GameObject:
   m_ObjectHideFlags: 0

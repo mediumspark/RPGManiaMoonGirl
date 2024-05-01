@@ -1,3 +1,4 @@
+using Stats;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,8 +19,12 @@ namespace Playable.Entities.Player
         [SerializeField]
         float Speed;
 
+        public bool Right;
+
         private void Awake()
         {
+            PlayerRef.instance.Playerlocation = this; 
+
             Controller = GetComponent<CharacterController>();
 
             input = new PlayerInput();
@@ -31,12 +36,16 @@ namespace Playable.Entities.Player
 
         private void Move_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
+            GetComponent<PlayerAnimator>().State = PlayerAnimator.AnimatorStates.Idle;
             MovementVector = Vector3.zero;
         }
 
         private void Move_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
             Vector3 MovementForce = obj.ReadValue<Vector2>();
+
+            Right = MovementForce.x < 0;
+            GetComponent<PlayerAnimator>().State = PlayerAnimator.AnimatorStates.Running;
 
             MovementVector = new Vector3(MovementForce.x,
                 0, MovementForce.y);

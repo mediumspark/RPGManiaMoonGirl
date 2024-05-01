@@ -11,15 +11,20 @@ namespace Playable
     public class GameState : MonoBehaviour
     {
         public static GameState instance;
-        public GameObject BattleCanvas, PauseCanvas;
+        public GameObject BattleCanvas, PauseCanvas, DefeatCanvas;
+        public AudioManager AudioManager; 
         private bool inBattle; 
         public bool InBattle { get { return inBattle; }
             set 
             {
-                if (BattleManager.instance?.CurrentActor != null)
-                    BattleCanvas.SetActive(value && BattleManager.instance.CurrentActor.tag == "Player");
-                if (!value)
-                    CameraControls.instance.OnOW(); 
+                try
+                {
+                    if (BattleManager.instance?.CurrentActor != null)
+                        BattleCanvas.SetActive(value && BattleManager.instance.CurrentActor.tag == "Player");
+                    if (!value)
+                        CameraControls.instance.OnOW();
+                }
+                catch { }
 
                 inBattle = value;
             } 
@@ -31,7 +36,27 @@ namespace Playable
         private void Awake()
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); 
+            DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+        }
+
+        private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            InBattle = false; 
+
+            try
+            {
+                BattleManager.instance.zone = FindObjectOfType<BattleZone>();
+            }
+            catch { }
+            try
+            {
+                AudioManager.PlaySound(arg0.name);
+            }
+            catch 
+            {
+                AudioManager.PlaySound("");
+            }
         }
 
         public void Pause()

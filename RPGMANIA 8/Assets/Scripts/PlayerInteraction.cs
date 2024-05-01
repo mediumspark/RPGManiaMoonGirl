@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 namespace Playable.Entities.Player
 {
+    using TMPro;
+    using UI;
     using UnityEngine.UI; 
 
     public class PlayerInteraction : MonoBehaviour
@@ -17,6 +19,7 @@ namespace Playable.Entities.Player
         SpriteRenderer Indicator;
         private IInteractable interactable;
         private PlayerInput _input;
+        public TextMeshProUGUI PickUpObjectText; 
 
         private void Awake()
         {
@@ -36,8 +39,28 @@ namespace Playable.Entities.Player
 
         private void OnSelect(InputAction.CallbackContext obj)
         {
-            interactable?.OnInteract(); 
+            if (interactable != null)
+            {
+                switch (interactable)
+                {
+                    case var x when x is Page:
+                        var y = x as Page;
+                        PickUpObjectText.text = $"Page {y.Number}";
+                        break;
+                }
+
+                StartCoroutine(PlayText(PickUpObjectText));
+            }
+            interactable?.OnInteract();
         }
+
+        private IEnumerator PlayText(TextMeshProUGUI Text)
+        {
+            PickUpObjectText.gameObject.SetActive(true); 
+            yield return new WaitForSecondsRealtime(0.5f);
+            PickUpObjectText.gameObject.SetActive(false);
+        }
+
 
         private void FixedUpdate()
         {

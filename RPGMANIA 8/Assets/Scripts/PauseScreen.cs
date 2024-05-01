@@ -4,15 +4,26 @@ using UnityEngine;
 
 namespace UI
 {
+    using Playable;
     using Stats;
-    using TMPro; 
+    using TMPro;
+    using UnityEngine.UI;
 
     public class PauseScreen : MonoBehaviour
     {
         [SerializeField]
         TextMeshProUGUI Health, Level, Speed, Attack, Defense, Special, Experience;
         [SerializeField]
-        PlayerStatsRef Stats; 
+        PlayerStatsRef Stats;
+        [SerializeField]
+        Button CloseButton, ExitButton;
+
+
+        private void Awake()
+        {
+            ExitButton.onClick.AddListener(() => GameState.instance.Quit());
+            CloseButton.onClick.AddListener(() => GameState.instance.Pause()); 
+        }
 
         private void Update()
         {
